@@ -42,7 +42,7 @@ public class ClienteGUI {
                             System.out.println("Não há nenhum show em cartaz no momento.");
                         }
                         break;
-                /*case 2: System.out.println("Digite o código do show que você deseja comprar: ");
+                case 2: System.out.println("Digite o código do show que você deseja comprar: ");
                         String Scodigo = in.nextLine();
                         codigo = Integer.parseInt(Scodigo);
                         if(codigo < 0 || codigo > EvMusicalRepository.getShowsEmCartaz().size()){
@@ -66,8 +66,23 @@ public class ClienteGUI {
                         }while(dcup != 1 && dcup != 2);
                         IngressoEvMusical ingresso = new IngressoEvMusical();
                         ingresso.setShow(EvMusicalRepository.getShowsEmCartaz().get(codigo-1));
-                        //
-                        ingresso.setPreco(25);
+                        do{
+                            System.out.println("Qual lugar?");
+                            System.out.println("1 - Pista");
+                            System.out.println("2 - Camarote");
+                            String lugar = in.nextLine();
+                            if(!lugar.isEmpty())
+                                ilugar = Integer.parseInt(lugar);
+                            switch (ilugar){
+                                case 1: ingresso.setPreco(200);
+                                        ingresso.setLugar("Pista");
+                                        break;
+                                case 2: ingresso.setPreco(500);
+                                        ingresso.setLugar("Camarote);
+                                        break;
+                                default: System.out.println("Opção inválida");
+                            }
+                        }while(ilugar != 1 && ilugar != 2);
                         if(dcup == 1){
                             int opcao = 0;
                             do{
@@ -85,7 +100,7 @@ public class ClienteGUI {
                                             String status = clienteController.resgatarCupom(cliente, codigoCup);
                                             System.out.println(status);
                                             if(status.equals("Cupom resgatado com sucesso")){
-                                                System.out.println("Preço do ingresso: R$" + (25-cliente.getCuponsAtivos().get(cliente.getCuponsAtivos().size()-1).getTipoDeCupom()));
+                                                System.out.println("Preço do ingresso: R$" + (ingresso.getPreco()-cliente.getCuponsAtivos().get(cliente.getCuponsAtivos().size()-1).getTipoDeCupom()));
                                                 System.out.println("Digite o valor do pagamento:");
                                                 String Spagamento = in.nextLine();
                                                 double pagamento = 0;
@@ -111,7 +126,7 @@ public class ClienteGUI {
                                                     break;
                                                 }
                                             }while(true);
-                                            System.out.println("Preço do ingresso: R$" + (25-cliente.getCuponsAtivos().get(dcup).getTipoDeCupom()));
+                                            System.out.println("Preço do ingresso: R$" + (ingresso.getPreco()-cliente.getCuponsAtivos().get(dcup).getTipoDeCupom()));
                                             System.out.println("Digite o valor do pagamento:");
                                             String Spagamento = in.nextLine();
                                             double pagamento = 0;
