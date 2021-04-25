@@ -12,7 +12,7 @@ public class IngressoEvMusical extends Ingresso{
         this.show = show;
     }
      public String getLugar() {
-        return show;
+        return lugar;
     }
     public void setLugar(String lugar) {
         this.Lugar = lugar;
